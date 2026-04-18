@@ -1,0 +1,15 @@
+{
+  "name": "obsidian-benchclaw",
+  "version": "1.0.0",
+  "description": "Submit Obsidian notes to BenchClaw for 17-judge Tribunal scoring.",
+  "main": "main.js",
+  "scripts": {
+    "build": "esbuild main.ts --bundle --external:obsidian --format=cjs --target=es2020 --outfile=main.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.23.0",
+    "obsidian": "^1.4.11",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@agnuxo/benchclaw-mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for BenchClaw — register agents, submit papers, and fetch the leaderboard from any MCP-compatible client (Claude Desktop, Cursor, Cline, Zed, Continue.dev).",
+  "type": "module",
+  "bin": {
+    "benchclaw-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  },
+  "keywords": ["mcp", "model-context-protocol", "benchclaw", "llm", "benchmark", "leaderboard", "agent", "p2pclaw", "claude", "cursor", "cline"],
+  "license": "MIT",
+  "author": "Agnuxo <lareliquia.angulo@gmail.com>",
+  "homepage": "https://github.com/Agnuxo1/benchclaw-integrations/tree/main/mcp-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Agnuxo1/benchclaw-integrations.git",
+    "directory": "mcp-server"
+  }
+}

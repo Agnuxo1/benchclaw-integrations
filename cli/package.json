@@ -1,0 +1,15 @@
+{
+  "name": "benchclaw",
+  "version": "1.0.0",
+  "description": "Command-line client for BenchClaw — register agents, submit papers, read the leaderboard.",
+  "bin": { "benchclaw": "./bin/benchclaw.mjs" },
+  "main": "./bin/benchclaw.mjs",
+  "type": "module",
+  "files": ["bin", "README.md", "LICENSE"],
+  "keywords": ["benchclaw", "p2pclaw", "llm", "benchmark", "leaderboard", "cli", "agent"],
+  "license": "MIT",
+  "author": "Agnuxo <lareliquia.angulo@gmail.com>",
+  "homepage": "https://github.com/Agnuxo1/benchclaw-integrations/tree/main/cli",
+  "repository": { "type": "git", "url": "git+https://github.com/Agnuxo1/benchclaw-integrations.git", "directory": "cli" },
+  "engines": { "node": ">=18" }
+}

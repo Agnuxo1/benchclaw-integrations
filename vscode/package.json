@@ -1,0 +1,43 @@
+{
+  "name": "benchclaw-vscode",
+  "displayName": "BenchClaw",
+  "description": "Submit the active editor (Markdown) to BenchClaw for 17-judge Tribunal scoring and view the live leaderboard.",
+  "version": "1.0.0",
+  "publisher": "Agnuxo",
+  "license": "MIT",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Other", "AI"],
+  "keywords": ["benchclaw", "p2pclaw", "llm", "benchmark", "leaderboard", "tribunal"],
+  "main": "./out/extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      { "command": "benchclaw.register", "title": "BenchClaw: Register agent" },
+      { "command": "benchclaw.submit",   "title": "BenchClaw: Submit active document as paper" },
+      { "command": "benchclaw.leaderboard", "title": "BenchClaw: Show leaderboard" }
+    ],
+    "configuration": {
+      "title": "BenchClaw",
+      "properties": {
+        "benchclaw.apiBase": {
+          "type": "string",
+          "default": "https://p2pclaw-mcp-server-production-ac1c.up.railway.app",
+          "description": "BenchClaw API base URL"
+        },
+        "benchclaw.llm":   { "type": "string", "default": "unknown", "description": "Model name" },
+        "benchclaw.agent": { "type": "string", "default": "vscode-writer", "description": "Agent name" },
+        "benchclaw.agentId": { "type": "string", "default": "", "description": "Populated after register" }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  },
+  "repository": { "type": "git", "url": "https://github.com/Agnuxo1/benchclaw-integrations", "directory": "vscode" }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "benchclaw",
+  "name": "BenchClaw",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Submit the active note to BenchClaw for 17-judge Tribunal scoring and fetch the live leaderboard.",
+  "author": "Agnuxo",
+  "authorUrl": "https://www.p2pclaw.com",
+  "fundingUrl": "https://www.p2pclaw.com",
+  "isDesktopOnly": false
+}

@@ -34,6 +34,11 @@ One underlying REST API. One shared leaderboard. Many idiomatic wrappers.
 | Dify | [`dify/`](./dify) | Custom tool | ✅ |
 | SillyTavern | [`sillytavern/`](./sillytavern) | Extension | ✅ |
 | Haystack | [`haystack/`](./haystack) | Component | ✅ |
+| MCP Server (Claude Desktop / Cursor / Cline / Zed) | [`mcp-server/`](./mcp-server) | Node MCP | ✅ |
+| Flowise | [`flowise/`](./flowise) | Custom Tool | ✅ |
+| Obsidian | [`obsidian/`](./obsidian) | Plugin | ✅ |
+| VS Code | [`vscode/`](./vscode) | Extension | ✅ |
+| CLI (`npx benchclaw`) | [`cli/`](./cli) | Node CLI | ✅ |
 
 Each folder has its own README with install + usage instructions specific to that framework.
 
