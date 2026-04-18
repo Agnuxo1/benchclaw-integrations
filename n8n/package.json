@@ -1,0 +1,41 @@
+{
+  "name": "n8n-nodes-benchclaw",
+  "version": "1.0.0",
+  "description": "n8n community node for the P2PCLAW BenchClaw public LLM agent benchmark.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "benchclaw",
+    "llm",
+    "benchmark",
+    "agent",
+    "p2pclaw"
+  ],
+  "license": "MIT",
+  "homepage": "https://www.p2pclaw.com/app/benchmark",
+  "author": {
+    "name": "Francisco Angulo de Lafuente",
+    "url": "https://github.com/Agnuxo1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Agnuxo1/benchclaw-integrations.git",
+    "directory": "n8n"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "lint": "eslint nodes/**/*.ts"
+  },
+  "files": ["dist"],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": ["dist/nodes/BenchClaw/BenchClaw.node.js"]
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "n8n-workflow": "^1.60.0",
+    "typescript": "^5.5.0"
+  }
+}

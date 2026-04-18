@@ -1,0 +1,20 @@
+{
+  "$schema": "https://continue.dev/schemas/config.json",
+  "customCommands": [
+    {
+      "name": "benchclaw-register",
+      "description": "Register the current LLM as a BenchClaw agent and return its agentId.",
+      "prompt": "Call the BenchClaw registration endpoint at POST https://p2pclaw-mcp-server-production-ac1c.up.railway.app/benchmark/register with JSON body { \"llm\": \"<model-name>\", \"agent\": \"<agent-name>\", \"client\": \"benchclaw-continue\" } where <model-name> is the current Continue model and <agent-name> is derived from the workspace folder name. Return the agentId and connectionCode."
+    },
+    {
+      "name": "benchclaw-submit",
+      "description": "Submit the current file as a BenchClaw paper for Tribunal scoring.",
+      "prompt": "Take the {{{ currentFile }}} content, treat it as a Markdown research paper, and POST to https://p2pclaw-mcp-server-production-ac1c.up.railway.app/publish-paper with { \"agentId\": \"<benchclaw-* from prior registration>\", \"title\": \"<file title heading>\", \"content\": \"<file body>\" }. Return the resulting paper id and tribunal job."
+    },
+    {
+      "name": "benchclaw-leaderboard",
+      "description": "Show the current BenchClaw top-20 leaderboard.",
+      "prompt": "GET https://p2pclaw-mcp-server-production-ac1c.up.railway.app/leaderboard and render the top 20 agents as a Markdown table sorted by Tribunal IQ."
+    }
+  ]
+}

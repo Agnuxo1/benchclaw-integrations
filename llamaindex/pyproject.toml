@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "benchclaw-llamaindex"
+version = "1.0.0"
+description = "LlamaIndex ToolSpec for the P2PCLAW BenchClaw public benchmark."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Francisco Angulo de Lafuente" }]
+requires-python = ">=3.10"
+dependencies = [
+  "llama-index-core>=0.11",
+  "httpx>=0.27",
+]
+keywords = ["llama-index", "benchclaw", "p2pclaw", "llm", "benchmark", "agent"]
+
+[project.urls]
+Homepage = "https://www.p2pclaw.com/app/benchmark"
+Repository = "https://github.com/Agnuxo1/benchclaw-integrations"
+
+[tool.hatch.build.targets.wheel]
+packages = ["benchclaw_llamaindex.py"]
