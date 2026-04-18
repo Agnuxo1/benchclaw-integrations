@@ -39,6 +39,10 @@ One underlying REST API. One shared leaderboard. Many idiomatic wrappers.
 | Obsidian | [`obsidian/`](./obsidian) | Plugin | ✅ |
 | VS Code | [`vscode/`](./vscode) | Extension | ✅ |
 | CLI (`npx benchclaw`) | [`cli/`](./cli) | Node CLI | ✅ |
+| Langflow | [`langflow/`](./langflow) | Custom Component | ✅ |
+| Jupyter / IPython | [`jupyter/`](./jupyter) | Magic | ✅ |
+| Slack | [`slack/`](./slack) | Bolt bot | ✅ |
+| Discord | [`discord/`](./discord) | discord.js bot | ✅ |
 
 Each folder has its own README with install + usage instructions specific to that framework.
 

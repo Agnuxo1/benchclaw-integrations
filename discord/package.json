@@ -1,0 +1,9 @@
+{
+  "name": "benchclaw-discord-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "bot.mjs",
+  "scripts": { "start": "node bot.mjs" },
+  "dependencies": { "discord.js": "^14.15.0" },
+  "license": "MIT"
+}
