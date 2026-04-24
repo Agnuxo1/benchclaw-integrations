@@ -59,12 +59,13 @@ class BenchClawClient:
     # ------------------------------------------------------------------ #
     # high-level                                                         #
     # ------------------------------------------------------------------ #
-    def register(self, llm: str, agent: str, agent_id: Optional[str] = None) -> Dict[str, Any]:
-        """Register an LLM/agent. Returns {agentId, ...}."""
-        return self._request("POST", "/quick-join", {
+    def register(self, llm: str, agent: str, provider: Optional[str] = None) -> Dict[str, Any]:
+        """Register an LLM/agent on BenchClaw. Returns {agentId, connectionCode, ...}."""
+        return self._request("POST", "/benchmark/register", {
             "llm": llm,
             "agent": agent,
-            **({"agentId": agent_id} if agent_id else {}),
+            "provider": provider,
+            "client": "benchclaw-python",
         })
 
     def submit_paper(

@@ -1,0 +1,83 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# benchclaw-integrations — meta-package
+#
+# This root pyproject lets developers install any combination of framework
+# adapters via extras:
+#
+#   pip install benchclaw-integrations                     # core (stdlib only)
+#   pip install "benchclaw-integrations[langchain]"
+#   pip install "benchclaw-integrations[crewai]"
+#   pip install "benchclaw-integrations[autogen]"
+#   pip install "benchclaw-integrations[llamaindex]"
+#   pip install "benchclaw-integrations[openai-agents]"
+#   pip install "benchclaw-integrations[all]"
+# ──────────────────────────────────────────────────────────────────────────────
+
+[project]
+name = "benchclaw-integrations"
+version = "1.0.0"
+description = "Adapters that connect any AI agent framework to the P2PCLAW BenchClaw benchmark leaderboard."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Francisco Angulo de Lafuente" }]
+requires-python = ">=3.10"
+
+# Core has zero third-party deps — only stdlib BenchClawClient
+dependencies = []
+
+keywords = [
+  "benchclaw", "p2pclaw", "llm", "benchmark", "leaderboard", "agent",
+  "langchain", "crewai", "autogen", "llamaindex", "openai-agents",
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+langchain    = ["langchain-core>=0.3,<1.0", "httpx>=0.27", "pydantic>=2.0"]
+crewai       = ["crewai>=0.80", "httpx>=0.27", "pydantic>=2.0"]
+autogen      = ["autogen-agentchat>=0.4", "autogen-core>=0.4", "httpx>=0.27"]
+llamaindex   = ["llama-index-core>=0.11", "httpx>=0.27"]
+openai-agents = ["openai-agents>=0.0.7"]
+haystack     = ["haystack-ai>=2.0", "httpx>=0.27"]
+swarms       = ["swarms>=6.0", "httpx>=0.27"]
+agno         = ["agno>=1.0", "httpx>=0.27"]
+metagpt      = ["metagpt>=0.8", "httpx>=0.27"]
+dev          = ["pytest>=8.0", "pytest-asyncio>=0.23", "httpx>=0.27"]
+all = [
+  "langchain-core>=0.3,<1.0",
+  "httpx>=0.27",
+  "pydantic>=2.0",
+  "crewai>=0.80",
+  "autogen-agentchat>=0.4",
+  "autogen-core>=0.4",
+  "llama-index-core>=0.11",
+  "openai-agents>=0.0.7",
+]
+
+[project.urls]
+Homepage = "https://www.p2pclaw.com/app/benchmark"
+Repository = "https://github.com/Agnuxo1/benchclaw-integrations"
+Leaderboard = "https://benchclaw.vercel.app"
+"Bug Tracker" = "https://github.com/Agnuxo1/benchclaw-integrations/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["_shared"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = [
+  "langchain/tests",
+  "crewai/tests",
+  "autogen/tests",
+  "llamaindex/tests",
+  "openai-agents/tests",
+]

@@ -1,0 +1,58 @@
+{
+  "name": "benchclaw-integrations",
+  "version": "1.0.0",
+  "description": "Adapters that connect any AI agent framework (JS/TS) to the P2PCLAW BenchClaw benchmark leaderboard.",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./mcp": "./mcp-server/dist/index.js",
+    "./cli": "./cli/index.js"
+  },
+  "bin": {
+    "benchclaw": "./cli/index.js"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "mcp-server/dist",
+    "cli",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "node --test",
+    "test:integration": "BENCHCLAW_API_BASE=https://p2pclaw-mcp-server-production-ac1c.up.railway.app node --test **/*.test.js"
+  },
+  "workspaces": [
+    "mcp-server",
+    "cli"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0"
+  },
+  "keywords": [
+    "benchclaw",
+    "p2pclaw",
+    "llm",
+    "benchmark",
+    "leaderboard",
+    "agent",
+    "mcp",
+    "model-context-protocol",
+    "langchain",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "author": "Francisco Angulo de Lafuente",
+  "homepage": "https://www.p2pclaw.com/app/benchmark",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Agnuxo1/benchclaw-integrations"
+  },
+  "bugs": {
+    "url": "https://github.com/Agnuxo1/benchclaw-integrations/issues"
+  }
+}

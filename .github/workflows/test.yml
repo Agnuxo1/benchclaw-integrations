@@ -1,0 +1,231 @@
+name: BenchClaw Integration Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+env:
+  BENCHCLAW_API_BASE: https://p2pclaw-mcp-server-production-ac1c.up.railway.app
+
+jobs:
+  # ──────────────────────────────────────────────────────────────────────────
+  # Python adapter tests (one job per framework to allow independent failures)
+  # ──────────────────────────────────────────────────────────────────────────
+
+  test-langchain:
+    name: LangChain adapter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install langchain-core httpx pydantic pytest
+
+      - name: Run tests
+        working-directory: langchain
+        run: |
+          PYTHONPATH=. pytest tests/ -v --tb=short
+        env:
+          BENCHCLAW_API_BASE: ${{ env.BENCHCLAW_API_BASE }}
+
+  test-crewai:
+    name: CrewAI adapter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install "crewai>=0.80" httpx pydantic pytest
+
+      - name: Run tests
+        working-directory: crewai
+        run: |
+          PYTHONPATH=. pytest tests/ -v --tb=short
+        env:
+          BENCHCLAW_API_BASE: ${{ env.BENCHCLAW_API_BASE }}
+
+  test-autogen:
+    name: AutoGen adapter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install "autogen-agentchat>=0.4" "autogen-core>=0.4" httpx pytest pytest-asyncio
+
+      - name: Run tests
+        working-directory: autogen
+        run: |
+          PYTHONPATH=. pytest tests/ -v --tb=short --asyncio-mode=auto
+        env:
+          BENCHCLAW_API_BASE: ${{ env.BENCHCLAW_API_BASE }}
+
+  test-llamaindex:
+    name: LlamaIndex adapter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install "llama-index-core>=0.11" httpx pytest
+
+      - name: Run tests
+        working-directory: llamaindex
+        run: |
+          PYTHONPATH=. pytest tests/ -v --tb=short
+        env:
+          BENCHCLAW_API_BASE: ${{ env.BENCHCLAW_API_BASE }}
+
+  test-openai-agents:
+    name: OpenAI Agents SDK adapter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install "openai-agents>=0.0.7" pytest
+
+      - name: Run tests
+        working-directory: openai-agents
+        run: |
+          PYTHONPATH=. pytest tests/ -v --tb=short
+        env:
+          BENCHCLAW_API_BASE: ${{ env.BENCHCLAW_API_BASE }}
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Shared client (stdlib only — no external deps)
+  # ──────────────────────────────────────────────────────────────────────────
+
+  test-shared-client:
+    name: Shared Python client
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Test shared client (live API)
+        run: |
+          python - <<'EOF'
+          import sys
+          sys.path.insert(0, "_shared")
+          from benchclaw_client import BenchClawClient, BenchClawError
+
+          client = BenchClawClient()
+
+          # Register
+          reg = client.register("ci-test-model", "ci-shared-test")
+          print("Register:", {k: v for k, v in reg.items() if k != "privateKey"})
+          agent_id = reg.get("agentId") or reg.get("agent_id") or reg.get("id")
+          assert agent_id, f"No agentId in: {reg}"
+
+          # Leaderboard
+          lb = client.leaderboard(limit=5)
+          print(f"Leaderboard ({len(lb)} entries)")
+          assert isinstance(lb, list)
+
+          print("PASS")
+          EOF
+        env:
+          BENCHCLAW_API_BASE: ${{ env.BENCHCLAW_API_BASE }}
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # JS client smoke test
+  # ──────────────────────────────────────────────────────────────────────────
+
+  test-js-client:
+    name: JS core client
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test JS client (live API)
+        run: |
+          node --input-type=module <<'EOF'
+          import { BenchClawClient } from "./index.js";
+          const bc = new BenchClawClient();
+
+          const reg = await bc.register("ci-test-model", "ci-js-test");
+          console.log("Register:", reg);
+          const agentId = reg?.agentId || reg?.id;
+          if (!agentId) throw new Error(`No agentId in: ${JSON.stringify(reg)}`);
+
+          const lb = await bc.leaderboard(5);
+          console.log(`Leaderboard: ${lb.length} entries`);
+
+          console.log("PASS");
+          EOF
+        env:
+          BENCHCLAW_API_BASE: ${{ env.BENCHCLAW_API_BASE }}
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # MCP Server build
+  # ──────────────────────────────────────────────────────────────────────────
+
+  build-mcp-server:
+    name: MCP Server build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install and build
+        working-directory: mcp-server
+        run: |
+          npm ci
+          npm run build
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Summary gate — all jobs must pass
+  # ──────────────────────────────────────────────────────────────────────────
+
+  all-tests-pass:
+    name: All tests pass
+    runs-on: ubuntu-latest
+    needs:
+      - test-langchain
+      - test-crewai
+      - test-autogen
+      - test-llamaindex
+      - test-openai-agents
+      - test-shared-client
+      - test-js-client
+      - build-mcp-server
+    steps:
+      - run: echo "All integration tests passed."
