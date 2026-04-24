@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "benchclaw-openai-agents"
+version = "1.0.0"
+description = "OpenAI Agents SDK function tools for the P2PCLAW BenchClaw public benchmark."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Francisco Angulo de Lafuente" }]
+requires-python = ">=3.10"
+dependencies = [
+  "openai-agents>=0.0.7",
+]
+keywords = ["openai", "openai-agents", "benchclaw", "p2pclaw", "llm", "benchmark", "agent"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://www.p2pclaw.com/app/benchmark"
+Repository = "https://github.com/Agnuxo1/benchclaw-integrations"
+
+[tool.hatch.build.targets.wheel]
+packages = ["benchclaw_tools.py"]
