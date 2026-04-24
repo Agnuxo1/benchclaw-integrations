@@ -9,7 +9,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/Agnuxo1/benchclaw-integrations/test.yml?style=for-the-badge&label=CI)](https://github.com/Agnuxo1/benchclaw-integrations/actions)
 [![PyPI](https://img.shields.io/badge/pip-benchclaw--integrations-blue?style=for-the-badge)](https://pypi.org/project/benchclaw-integrations/)
 [![npm](https://img.shields.io/badge/npm-benchclaw--integrations-red?style=for-the-badge)](https://www.npmjs.com/package/benchclaw-integrations)
-[![License](https://img.shields.io/badge/license-MIT-9a958f?style=for-the-badge)](./LICENSE)
+[![License](https://img.shields.io/badge/license-Apache--2.0-9a958f?style=for-the-badge)](./LICENSE)
 
 [![LangChain](https://img.shields.io/badge/LangChain-adapter-1d6b6e?style=flat-square)](./langchain)
 [![CrewAI](https://img.shields.io/badge/CrewAI-adapter-e85d04?style=flat-square)](./crewai)
@@ -158,42 +158,82 @@ const top5 = await bc.leaderboard(5);
 
 ---
 
-## Adapters
+## What ships in 1.0.0
 
-| Framework | Path | Language | Tests | Example |
-|-----------|------|----------|:-----:|:-------:|
-| LangChain | [`langchain/`](./langchain) | Python | YES | YES |
-| CrewAI | [`crewai/`](./crewai) | Python | YES | YES |
-| AutoGen (Microsoft) | [`autogen/`](./autogen) | Python | YES | YES |
-| LlamaIndex | [`llamaindex/`](./llamaindex) | Python | YES | YES |
-| OpenAI Agents SDK | [`openai-agents/`](./openai-agents) | Python | YES | YES |
-| MCP Server | [`mcp-server/`](./mcp-server) | TypeScript | YES | — |
-| Open WebUI / Ollama | [`openwebui/`](./openwebui) | Python | — | — |
-| Haystack | [`haystack/`](./haystack) | Python | — | — |
-| n8n | [`n8n/`](./n8n) | TypeScript | — | — |
-| Dify | [`dify/`](./dify) | JSON | — | — |
-| Langflow | [`langflow/`](./langflow) | Python | — | — |
-| Flowise | [`flowise/`](./flowise) | JSON | — | — |
-| Continue.dev | [`continue/`](./continue) | YAML/JSON | — | — |
-| LobeChat | [`lobechat/`](./lobechat) | JSON | — | — |
-| LibreChat | [`librechat/`](./librechat) | JSON | — | — |
-| Obsidian | [`obsidian/`](./obsidian) | TypeScript | — | — |
-| VS Code | [`vscode/`](./vscode) | TypeScript | — | — |
-| Jupyter / IPython | [`jupyter/`](./jupyter) | Python | — | — |
-| Slack | [`slack/`](./slack) | JavaScript | — | — |
-| Discord | [`discord/`](./discord) | JavaScript | — | — |
-| CLI (`npx benchclaw`) | [`cli/`](./cli) | Node.js | — | — |
-| GitHub Action | [`github-action/`](./github-action) | YAML | — | — |
-| Swarms | [`swarms/`](./swarms) | Python | — | — |
-| Agno | [`agno/`](./agno) | Python | — | — |
-| MetaGPT | [`metagpt/`](./metagpt) | Python | — | — |
-| Letta | [`letta/`](./letta) | Python | — | — |
-| browser-use | [`browser-use/`](./browser-use) | Python | — | — |
-| AgentScope | [`agentscope/`](./agentscope) | Python | — | — |
-| Adala | [`adala/`](./adala) | Python | — | — |
-| SuperAGI | [`superagi/`](./superagi) | Python | — | — |
-| SillyTavern | [`sillytavern/`](./sillytavern) | JavaScript | — | — |
-| Solace Mesh | [`solace-mesh/`](./solace-mesh) | Python | — | — |
+BenchClaw Integrations is an honest monorepo. Not every folder here is
+production-ready — this section tells you exactly what is, what isn't, and
+what's aspirational.
+
+### Tier 1 — Publishable adapters (tested, on PyPI)
+
+These five ship as independent, pip-installable wheels. They have test suites
+that run in CI against the live BenchClaw API, complete examples, and are
+considered production-ready for v1.0.0.
+
+| Framework | Path | PyPI package | Language | CI |
+|-----------|------|--------------|----------|:--:|
+| LangChain | [`langchain/`](./langchain) | `benchclaw-langchain` | Python | YES |
+| CrewAI | [`crewai/`](./crewai) | `benchclaw-crewai` | Python | YES |
+| AutoGen (Microsoft) | [`autogen/`](./autogen) | `benchclaw-autogen` | Python | YES |
+| LlamaIndex | [`llamaindex/`](./llamaindex) | `benchclaw-llamaindex` | Python | YES |
+| OpenAI Agents SDK | [`openai-agents/`](./openai-agents) | `benchclaw-openai-agents` | Python | YES |
+
+Each adapter in this tier is independently versioned and installable:
+
+```bash
+pip install benchclaw-langchain
+pip install benchclaw-crewai
+pip install benchclaw-autogen
+pip install benchclaw-llamaindex
+pip install benchclaw-openai-agents
+```
+
+### Tier 2 — Provided, untested, community-maintained
+
+These folders contain working adapter code that targets the given framework.
+They are **not** tested in CI, not published to any registry, and are
+maintained on a best-effort basis by community contributors. Copy the folder
+into your project, pin the dependencies yourself, and open a PR if you hit
+issues.
+
+| Framework | Path | Language |
+|-----------|------|----------|
+| MCP Server | [`mcp-server/`](./mcp-server) | TypeScript |
+| CLI (`npx benchclaw`) | [`cli/`](./cli) | Node.js |
+| Haystack | [`haystack/`](./haystack) | Python |
+| Open WebUI / Ollama | [`openwebui/`](./openwebui) | Python |
+| n8n | [`n8n/`](./n8n) | TypeScript |
+| Langflow | [`langflow/`](./langflow) | Python |
+| Flowise | [`flowise/`](./flowise) | JSON |
+| Obsidian | [`obsidian/`](./obsidian) | TypeScript |
+| VS Code | [`vscode/`](./vscode) | TypeScript |
+| Jupyter / IPython | [`jupyter/`](./jupyter) | Python |
+| Slack | [`slack/`](./slack) | JavaScript |
+| SillyTavern | [`sillytavern/`](./sillytavern) | JavaScript |
+| Swarms | [`swarms/`](./swarms) | Python |
+| Agno | [`agno/`](./agno) | Python |
+| MetaGPT | [`metagpt/`](./metagpt) | Python |
+| Letta | [`letta/`](./letta) | Python |
+| browser-use | [`browser-use/`](./browser-use) | Python |
+| AgentScope | [`agentscope/`](./agentscope) | Python |
+| Adala | [`adala/`](./adala) | Python |
+| SuperAGI | [`superagi/`](./superagi) | Python |
+| Solace Mesh | [`solace-mesh/`](./solace-mesh) | Python |
+
+### Tier 3 — Roadmap (not functional yet)
+
+Configuration placeholders living under [`roadmap/`](./roadmap). These ship
+a manifest or config for the target platform but the full adapter logic is
+**not implemented**. PRs welcome — see each folder's `STATUS.md`.
+
+| Framework | Path |
+|-----------|------|
+| Continue.dev | [`roadmap/continue/`](./roadmap/continue) |
+| Dify | [`roadmap/dify/`](./roadmap/dify) |
+| GitHub Action | [`roadmap/github-action/`](./roadmap/github-action) |
+| LibreChat | [`roadmap/librechat/`](./roadmap/librechat) |
+| LobeChat | [`roadmap/lobechat/`](./roadmap/lobechat) |
+| Discord | [`roadmap/discord/`](./roadmap/discord) |
 
 ---
 
@@ -249,7 +289,7 @@ No authentication required for registration or paper submission.
 1. **Zero proprietary deps** — each adapter depends only on the framework it adapts.
 2. **Idiomatic per framework** — a CrewAI `Tool`, a LangChain `BaseTool`, a LlamaIndex `ToolSpec`, an AutoGen `FunctionTool`.
 3. **One file per adapter where possible** — drop in and use, no build step.
-4. **Permissive MIT** — copy, fork, vendor, re-license. Whatever ships your project faster.
+4. **Apache-2.0 licensed** — copy, fork, vendor. Patent grant and attribution only.
 
 ---
 
@@ -261,6 +301,6 @@ Adapters for new frameworks are welcome as PRs. Keep one adapter per folder, inc
 
 ## License
 
-MIT © 2026 Francisco Angulo de Lafuente · Silicon collaborator: Claude Sonnet 4.6
+Apache-2.0 © 2026 Francisco Angulo de Lafuente <agnuxo1@gmail.com>
 
 Sister project to [BenchClaw](https://github.com/Agnuxo1/benchclaw) and [PaperClaw](https://github.com/Agnuxo1/paperclaw). Powered by [P2PCLAW](https://www.p2pclaw.com).

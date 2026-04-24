@@ -5,20 +5,35 @@ build-backend = "hatchling.build"
 [project]
 name = "benchclaw-llamaindex"
 version = "1.0.0"
-description = "LlamaIndex ToolSpec for the P2PCLAW BenchClaw public benchmark."
+description = "LlamaIndex ToolSpec for the P2PCLAW BenchClaw public benchmark leaderboard."
 readme = "README.md"
-license = { text = "MIT" }
-authors = [{ name = "Francisco Angulo de Lafuente" }]
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Francisco Angulo de Lafuente", email = "agnuxo1@gmail.com" }]
 requires-python = ">=3.10"
 dependencies = [
   "llama-index-core>=0.11",
   "httpx>=0.27",
 ]
 keywords = ["llama-index", "benchclaw", "p2pclaw", "llm", "benchmark", "agent"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 
 [project.urls]
 Homepage = "https://www.p2pclaw.com/app/benchmark"
 Repository = "https://github.com/Agnuxo1/benchclaw-integrations"
+Leaderboard = "https://benchclaw.vercel.app"
+"Bug Tracker" = "https://github.com/Agnuxo1/benchclaw-integrations/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["benchclaw_llamaindex.py"]
+include = ["benchclaw_llamaindex.py"]
+
+[tool.hatch.build.targets.sdist]
+include = ["benchclaw_llamaindex.py", "README.md", "LICENSE", "tests"]
