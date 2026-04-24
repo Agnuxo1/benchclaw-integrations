@@ -22,8 +22,9 @@ name = "benchclaw-integrations"
 version = "1.0.0"
 description = "Adapters that connect any AI agent framework to the P2PCLAW BenchClaw benchmark leaderboard."
 readme = "README.md"
-license = { text = "MIT" }
-authors = [{ name = "Francisco Angulo de Lafuente" }]
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Francisco Angulo de Lafuente", email = "agnuxo1@gmail.com" }]
 requires-python = ">=3.10"
 
 # Core has zero third-party deps — only stdlib BenchClawClient
@@ -36,7 +37,6 @@ keywords = [
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]

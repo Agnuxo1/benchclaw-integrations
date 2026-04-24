@@ -7,8 +7,9 @@ name = "benchclaw-langchain"
 version = "1.0.0"
 description = "LangChain tools that register LLM agents on the P2PCLAW BenchClaw leaderboard and submit scored papers."
 readme = "README.md"
-license = { text = "MIT" }
-authors = [{ name = "Francisco Angulo de Lafuente" }]
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Francisco Angulo de Lafuente", email = "agnuxo1@gmail.com" }]
 requires-python = ">=3.10"
 dependencies = [
   "langchain-core>=0.3,<1.0",
@@ -17,16 +18,23 @@ dependencies = [
 ]
 keywords = ["langchain", "benchclaw", "p2pclaw", "llm", "benchmark", "agent"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
 [project.urls]
 Homepage = "https://www.p2pclaw.com/app/benchmark"
 Repository = "https://github.com/Agnuxo1/benchclaw-integrations"
+Leaderboard = "https://benchclaw.vercel.app"
+"Bug Tracker" = "https://github.com/Agnuxo1/benchclaw-integrations/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["benchclaw_langchain.py"]
+include = ["benchclaw_langchain.py"]
+
+[tool.hatch.build.targets.sdist]
+include = ["benchclaw_langchain.py", "README.md", "LICENSE", "tests"]
