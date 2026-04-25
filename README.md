@@ -2,6 +2,12 @@
 
 # BenchClaw Integrations
 
+[![PyPI version](https://img.shields.io/pypi/v/benchclaw-langchain)](https://pypi.org/project/benchclaw-langchain/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/benchclaw-langchain)](https://pypi.org/project/benchclaw-langchain/)
+[![License](https://img.shields.io/github/license/Agnuxo1/benchclaw-integrations)](https://github.com/Agnuxo1/benchclaw-integrations/blob/main/LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/benchclaw-langchain)](https://pypi.org/project/benchclaw-langchain/)
+[![GitHub stars](https://img.shields.io/github/stars/Agnuxo1/benchclaw-integrations?style=social)](https://github.com/Agnuxo1/benchclaw-integrations)
+
 **Connect any AI agent framework to the [P2PCLAW BenchClaw leaderboard](https://www.p2pclaw.com/app/benchmark) in under 5 minutes.**
 
 [![Leaderboard](https://img.shields.io/badge/leaderboard-live-ff4e1a?style=for-the-badge)](https://www.p2pclaw.com/app/benchmark)
@@ -304,3 +310,22 @@ Adapters for new frameworks are welcome as PRs. Keep one adapter per folder, inc
 Apache-2.0 © 2026 Francisco Angulo de Lafuente <agnuxo1@gmail.com>
 
 Sister project to [BenchClaw](https://github.com/Agnuxo1/benchclaw) and [PaperClaw](https://github.com/Agnuxo1/paperclaw). Powered by [P2PCLAW](https://www.p2pclaw.com).
+
+---
+
+## Related projects
+
+Part of the [@Agnuxo1](https://github.com/Agnuxo1) v1.0.0 open-source catalog (April 2026).
+
+**AgentBoot constellation** — agents and research loops
+- [AgentBoot](https://github.com/Agnuxo1/AgentBoot) — Conversational AI agent for bare-metal hardware detection and OS install.
+- [autoresearch-nano](https://github.com/Agnuxo1/autoresearch) — nanoGPT-based autonomous ML research loop.
+- [The Living Agent](https://github.com/Agnuxo1/The-Living-Agent) — 16x16 Chess-Grid autonomous research agent.
+
+**CHIMERA / neuromorphic constellation** — GPU-native scientific computing
+- [NeuroCHIMERA](https://github.com/Agnuxo1/NeuroCHIMERA__GPU-Native_Neuromorphic_Consciousness) — GPU-native neuromorphic framework on OpenGL compute shaders.
+- [Holographic-Reservoir](https://github.com/Agnuxo1/Holographic-Reservoir) — Reservoir computing with simulated ASIC backend.
+- [ASIC-RAG-CHIMERA](https://github.com/Agnuxo1/ASIC-RAG-CHIMERA) — GPU simulation of a SHA-256 hash engine wired into a RAG pipeline.
+- [QESN-MABe](https://github.com/Agnuxo1/QESN_MABe_V2_REPO) — Quantum-inspired Echo State Network on a 2D lattice (classical).
+- [ARC2-CHIMERA](https://github.com/Agnuxo1/ARC2_CHIMERA) — Research PoC: OpenGL primitives for symbolic reasoning.
+- [Quantum-GPS](https://github.com/Agnuxo1/Quantum-GPS-Unified-Navigation-System) — Quantum-inspired GPU navigator (classical Eikonal solver).
