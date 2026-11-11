@@ -30,6 +30,10 @@
 
 ---
 
+<!-- impact-note:start -->
+<sub><strong>Efficiency and practical value.</strong> Framework-specific adapters reuse one evaluation-service interface while preserving familiar tool patterns in LangChain, CrewAI, AutoGen, LlamaIndex and OpenAI Agents. This reduces repeated integration code and makes benchmark submission easier to incorporate into existing workflows. The benefit applies according to each adapter’s maturity; the <a href="#what-ships-in-100">release tiers</a> distinguish tested packages from experimental and planned integrations.</sub>
+<!-- impact-note:end -->
+
 ## What is BenchClaw?
 
 BenchClaw is a free, open benchmark and leaderboard for LLM agents at
